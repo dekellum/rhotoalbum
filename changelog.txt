@@ -1,0 +1,102 @@
+* 0.6  More, more, more
+
+20080607 - Ondrej Jaura
+
+- the EXIF library exifr optionally required
+- displaying EXIF basic data: exposure time, focal length and f-number
+- displaying EXIF extended data: camera model
+- options to enable displaying basic and extended EXIF data
+
+- album statistics in the menu: number of photos / number of subalbums
+- album statistics in the list of subalbums: total number of photos in the
+album (including all subalbums)
+- custom labels for no, one or more photos or albums
+
+- automatic album highlight creation (if none is already defined) from the
+first image of the album
+
+- generator output fixed - path without delimiters / (bug #19836, thnx to Mooffie)
+- typos fixed
+
+20080423 - Mooffie
+
+- relative links home, up and down
+- explicit index.html option
+
+* 0.5  Mind the gap
+
+20080403 - Ondrej Jaura
+
+- generator meta tag added (with the version number)
+- support spaces in directory and file names
+
+* 0.4  Slim and nice
+
+20071209 - Ondrej Jaura
+
+New settings (padding and fading) for the TripTracker viewer added.
+
+20071130 - Michael Adams
+
+- Ran CSS files through Flopcakes CSS optimizer: 30% reduction in sizes.
+- Put in a "hack" to use only even-numbered k's on the thumbnail HTML layout: images were appearing double.
+
+20071123 - Ondrej Jaura
+
+Improve thumbnail quality (switches -thumbnail and -blur).
+
+* 0.3  It is so good
+
+20071112 - Ondrej Jaura
+
+Author line is shown always.
+Author label added to allow values such as Author, Authors, Artist, etc.
+Crash if the options.yml file is missing fixed.
+Typos fixed.
+README style fixed and improved.
+Rakefile VERSION problem fixed.
+
+20071106 - Viktor Zigo
+
+- other image format extensions; case insensitive (in creating thumbnails and also title generation)
+- Images and albums descriptions:
+  . one central file per album (description.txt containing one-line 
+	mapping: file name, text separated by colon, semicolon, comma, tab.)
+  . one file per image/album (the text file name is the original file name of image or directory + '.txt')
+  . central description file generator (rhotoalbum.rb text)
+- default album image - if no highlight given 
+- author option
+- alternative design - e.g. white
+- parametrization: 
+  . CSS to be used 
+  . display title (photos, albums)
+  . thumb dimensions
+  . showing of title / description / date
+  . copyright / license text
+- clean generated script (.sh)
+- copyright reworked 
+- CSS adjustments more style-able
+- style switcher (optional)
+- XHTML strict; CSS valid
+- file permissions (700) + shebang
+- command line and help message
+- external optional options file to override default configuration (options.yml)
+- commands for recursive cleaning of generated pages (cleanindex) of any generated content (clean)
+
+-----
+* 0.2  Well, show also photos in my sub albums
+20070712 - Ondrej Jaura
+
+Only a bug fix for sub albums.
+Fixed:
+- bug #12232  Sub albums are not correctly generated.
+
+-----
+* 0.1  Show my photos
+20070525 - Ondrej Jaura
+
+The first public release. Still a lot of things to do, but the source code is almost
+cleaned and documented.
+
+Rhotoalbum provides the following basic functionalities: traversing subdirectories, creating
+thumbnails and generating an index.html page in each subdirectory.

@@ -1,0 +1,216 @@
+= Rhotoalbum
+
+version 0.6
+
+June 7 2008
+
+Ondrej Jaura  mailto:ondrej@valibuk.net
+Viktor Zigo  mailto:viz@alephzarro.com (contributor)
+
+
+== I. What is Rhotoalbum?
+
+Rhotoalbum is a photo album generator (programmed in Ruby). It works with a directory structure and it does not require any database connection or configuration file.
+
+Rhotoalbum generates thumbnails and the index.html file in each subdirectory. User can also add titles and descriptions of the images.
+
+KEY FEATURES:
+- Simple to use 
+- Nested albums
+- Plain HTML page behavior
+- Integrated JavaScript viewer
+- Titles
+- Descriptions
+- Album statistics
+- optional EXIF support
+- Multiple styles and style switcher
+- Customizable 
+
+
+== II. Requirements
+
+There are the following requirements:
+- a Linux shell account on a server
+- Ruby 1.8 on a server
+- the <code>convert</code> program from the ImageMagick library
+- optionally the EXIF library exifr for reading EXIF data from you photos
+- nice photos ;)
+
+
+== III. Directory Structure
+
+Rhotoalbum expects that your photos are stored in directories (and their subdirectories). The Rhotoalbum files should be installed (do not worry, it means unpacked) it the root directory of this structure.
+
+Example 1:
+  photos
+    2005
+      01_London
+      02_Stockholm
+      03_Oslo
+    2006
+      01_Paris
+      02_Madrid
+      03_Rome
+    2007
+      01_Sydney
+      02_Melbourne
+
+In this example, the Rhotoalbum files should be stored in the <code>photos</code> directory.
+
+Example 2:
+  photos
+    john
+      200702 Beach
+      200705 Party
+    alice
+      200703 Nice sunset
+      200705 Party
+    
+Again, the Rhotoalbum files should be stored in the <code>photos</code> directory.
+
+
+== IV. How does it work?
+
+  ruby rhotoalbum.rb
+
+Rhotoalbum starts in the actual directory where it gathers all subdirectories and image files.
+
+If there are image files, it creates the <code>thumbnails</code> directory, creates a thumbnail for each image and stores is in the <code>thumbnails</code> directory.
+
+Then it creates the index.html file that contains:
+- a menu with links to all parent directories
+- links to all subdirectories
+- thumbnails of image files
+- titles of images (taken from filename)
+- description of the images (taken from accompanying text files)
+
+It repeats these steps for each subdirectory (and its subdirectories).
+
+Directories and files are ordered by their names.
+
+
+=== IV.1 Highlight
+
+A link to a subdirectory uses a thumbnail <code>highlight.jpg</code> located in that subdirectory.
+
+The album thumbnail - highlight - is automatically created from the first image in the directory (i.e. album).
+
+How to create own highlight.jpg of a directory:
+- on Linux, create a symbolic link to one of the thumbnails of the directory
+
+    ln -s highlight.jpg thumbnails/th_img_1234.jpg
+
+- on Windows (or Linux), copy on of the thumbnails to the directory and rename it to <code>highlight.jpg</code>
+
+    copy thumbnails/img_1234.jpg .
+    mv img_1234.jpg highlight.jpg
+
+
+== V. JavaScript Image Viewer
+
+Rhotoalbum uses the TripTracker slideshow (http://slideshow.triptracker.net/). See the link for more details.
+
+
+== VI. License
+
+Rhotoalbum is distributed under the GPL license.
+
+
+== VII. F.A.Q.
+
+A few of (not so) frequently asked questions:
+
+* <em>ssh account, FTP</em>
+
+*Q*:: I do not have an ssh account, only FTP. Is there a way how to use Rhotoalbum?
+*A*:: No.
+
+*Q*:: Really?
+*A*:: Well, there is a possibility to generate your album on your computer and then transfer all files to your server. Usually, photos are quite large, so to copy the whole album again and again is cumbersome. Of course, you could copy only the changed files, but if you would install a new version of Rhotoalbum :), you would have to manually copy all changed files in all directories.
+
+* <em>image viewer</em>
+
+*Q*:: Is it possible to change the image viewer?
+*A*:: Hmmm... It is possible but... I tried several JavaScript image viewers -- the TripTRacker slideshow was the best (and also the license is fine).
+
+* <em>best practice</em>
+
+*Q*:: What is the best practice / sequence of steps for generating albums?
+*A*::  
+1. DEPLOYMENT:
+   * Upload directory structure with your images and install Rhotoalbum to the root directory
+1. DESCRIPTIONS: (optional) 
+   * a) run './rhotoalbum.rb text'  to generated description.txt files 
+   * b) write descriptions of the albums and images to the description.txt file in each directory
+1. CUSTOMIZATION: (optional)
+   * a) copy 'options.yml.template' to 'options.yml'
+   * b) customize the options in  'options.yml'
+1. GENERATION:
+   * run './rhotoalbum.rb' - all thumbnails, index pages will be generated
+1. HIGHLIGHTS:
+   * create highlight.jpg (by copy or symbolic link) in each directory for the album front page
+            
+*Q*:: What should I do to regenerate some or all files?
+*A*:: a) delete manually the generated files (thumbnails, index.html, description.txt) and re-run the respective generation command
+      b) to remove all generated files you can run  './rhotoalbum.rb cleanindex' to remove all index files, or './rhotoalbum.rb clean' to delete thumbnails, indices, highlights
+            
+*Q*:: How do I add new photos to the already existing structure?
+*A*:: As simple as you may think :) Just copy them to a directory where you want to have them and execute the ./rhotoalbum.rb as you did the first time.
+
+
+==  Advanced
+
+<em>Command line</em>
+
+./rhotoalbum.db [command]
+  Commands:
+    generate (default) - generates index.html, thumbnails for all subdirectories recursively (doesn't overwrite already generated files)
+    text  - generates descriptions.txt file in each subdirectory where album/photo descriptions can be writen
+    cleanindex - remove all index.html files recursively
+    clean - remove all generated thumbnails, indices, highlights recursively
+    help - displays a short Usage
+    
+    
+<em>Description files</em> 
+If photo title is not enough, you can assign a description text to any album or photo. 
+There  are two ways how to do it:
+
+1) One file per description. This is useful for ad-hoc description of few images.
+    The text file name is the original file name of image or directory + '.txt'
+    Example: for IMG123.JPG the description file is IMG123.JPG.txt
+    
+2) Central file for all description per album.
+    'description.txt' containing one-line mappings of the format: image name, text separated by colon, semicolon, comma or tab
+    Example: 
+    IMG123.JPG  : Sunset
+    My Album    : Vacation 2007
+    ...
+    
+<em>Customization</em> 
+
+You can customize the album generation. You can do it in the options.yml file.
+If this file is present the options will bee used. You can copy the file from options.yml.template.
+
+The following properties can be customized:
+title:: name of the album
+author:: author or authors
+author_label:: a label that should be used in the copyright section for author(s), e.g. Author, Authors or Artist
+css:: default style to be used
+explicitIndexHtml: true or false -- if true, appends '/index.html' to links; useful when you're browsing the album locally, using the 'file://' protocol, and not through a webserver
+styleSwitcher:: true or false -- to show the style switcher
+showTitleAlbum:: true or false -- to show the album title
+showStatsAlbum:: true or false -- to show the album statistics
+showTitlePhoto:: true or false -- to show the photo title
+showDescription:: true or false -- to show the photo description
+showDate:: true or false -- to show the photo date
+showExif:: true or false -- to show the basic EXIF data (exposure time, focal length and f-number)
+showExtendedExif:: true or false -- to show extended EXIF data (camera model)
+thumbnailDim:: 256x256 -- the thumbnail size
+panning:: true or false -- to enable the panning effect for the JavaScript photo viewer
+fading:: true or false -- to enable the fading effect for the JavaScript photo viewer
+labelNoPhoto:: no photos -- a label for no photo in an album
+labelOnePhoto:: one photo -- a label for one photo in an album
+labelMorePhotos:: # photos -- a label for more photos in an album
+labelOneAlbum:: one album -- a label for one subalbum in an album
+labelMoreAlbums:: # albums -- a label for more subalbums in an album
+copyright:: your copyright section, it may include links to e.g. creative commons licenses.

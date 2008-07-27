@@ -1,0 +1,32 @@
+/* Rhotoalbum white css file
+ * (C) 2007 Viktor Zigo
+ * viz@alephzarro.com
+ */
+ 
+body {padding:0;margin:0;text-align:left;color:#000;background:#fefefe}
+body,input,textarea,select {font-family:"Trebuchet MS",Arial,Helvetica,sans-serif}
+img {border:none}
+a {color:#a51;text-decoration:none}
+a:hover span {text-decoration:underline}
+.album .title {font-style:italic;letter-spacing:-1px}
+.title {display:block;font-weight:bold}
+.datum {display:block;font-size:0.7em;color:#888}
+.description {display: block;font-size:0.9em}
+.exifBasic {display: block;font-size: 0.9em;color:#888}
+.exifExtended {display: block;font-size: 0.8em;color:#888}
+.menu-details{padding-left:5em;color:#888}
+.statistics{display:block;font-size:0.7em;color:#888}
+img.image {border-top:5px #fff solid;border-left:5px #fff solid;border-bottom:5px #eee solid;border-right:5px #eee solid}
+div.image-item {float:left;padding:25px;height:310px;width:256px;text-align:center}
+div.first-image-item {clear:left}
+div.index-item {float:left;padding:28px;height:300px;width:256px;text-align:center;font-size:x-large}
+div.menu {padding:20px;margin:20px;background:#eed}
+span.actual-item {padding-left:10px;font-size:x-large}
+.skin {float:right;clear:right;font-size:0.8em}
+.skin a:active {text-decoration:underline;border:none}
+.copyright {float:right;clear:both;padding-right:30px;padding-top:100px;font-size:0.8em;text-align:right;color:#444}
+.copyright a {color:#888}
+.copyright p {margin-top:2px;margin-bottom:2px}
+.copyright p.software {color:#aaa}
+.copyright p.software a {text-decoration:none;color:#aaa}
+.copyright p.software em {text-decoration:underline;font-style:normal;color:#000}

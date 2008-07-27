@@ -1,0 +1,30 @@
+/* Rhotoalbum css file
+ * (C) 2007 Ondrej Jaura, Viktor Zigo
+ * ondrej@valibuk.net, viz@alephzarro.com
+ */
+
+body {color:#bbb;background:#000}
+img {border:none}
+a {color:#DDD}
+a:visited {color:#BBB}
+a:hover span {background:#333}
+.title {display:block;font-weight:bold}
+.datum {display:block;font-size:0.7em;color:#666}
+.description {display: block;font-size:0.9em}
+.exifBasic {display: block;font-size:0.9em;color:#666}
+.exifExtended {display: block;font-size:0.8em;color:#666}
+.menu-details{padding-left:5em;color:#888}
+.statistics{display:block;font-size:0.7em;color:#666}
+img.image {border:5px #111 solid}
+div.image-item {float:left;padding:25px;height:300px;width:256px;text-align:center}
+div.first-image-item {clear:left}
+div.index-item {float:left;padding:28px;height:300px;width:256px;text-align:center;font-size:x-large}
+div.menu {padding:20px;margin:20px;background:#333}
+span.actual-item {padding-left:10px;font-size:x-large}
+.skin {float:right;clear:right;font-size:0.8em}
+.copyright {float:right;clear:both;padding-right:30px;padding-top:100px;font-size:0.8em;text-align:right}
+.copyright a {color:#999}
+.copyright p {margin-top:2px;margin-bottom:2px}
+.copyright p.software {color:#777}
+.copyright p.software a {text-decoration:none;color:#777}
+.copyright p.software em {text-decoration:underline;font-style:normal;color:#bbb}

@@ -1,0 +1,23 @@
+title: Rhotoalbum
+author: Ondrej Jaura, Viktor Zigo
+author_label: Authors
+css: rhotoalbum.css
+explicitIndexHtml: false
+styleSwitcher: true
+showTitleAlbum: true
+showStatsAlbum: true
+showTitlePhoto: true
+showDescription: true
+showDate: true
+showExif: true
+showExtendedExif: false
+thumbnailDim: 256x256
+panning: false
+fading: false
+labelNoPhoto: 'no photos'
+labelOnePhoto: 'one photo'
+labelMorePhotos: '# photos'
+labelOneAlbum: 'one album'
+labelMoreAlbums: '# albums'
+#copyright: All rights reserved.
+#copyright: <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-nd/3.0/80x15.png" /></a> This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/" title="Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 License">CC NC ND</a>.
