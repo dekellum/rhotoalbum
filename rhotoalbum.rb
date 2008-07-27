@@ -254,7 +254,7 @@ module RhotoAlbum
               #{"<span class=\"datum\">#{ImageInfo.image_timestamp i}</span>" if @opts[:showDate]}
               #{"<span class=\"title\">#{ImageInfo.image_name i}</span>" if @opts[:showTitlePhoto]}
               #{"<span class=\"description\">#{desc}</span>" if desc and @opts[:showDescription]}
-              #{"<span class=\"exifBasic\">#{j.exif[:exposure_time].to_s} sec, #{j.exif[:focal_length]} mm, F#{j.exif[:f_number].to_f}</span>" if showExif}
+              #{"<span class=\"exifBasic\">#{j.exif[:exposure_time].to_s} sec, #{j.exif[:focal_length]} mm, F#{j.exif[:f_number].to_f}</span>" if not j.exif.exposure_time.nil? } 
               #{"<span class=\"exifExtended\">#{j.exif[:model]}</span>" if showExif && @opts[:showExtendedExif]}
               </div>
           }
