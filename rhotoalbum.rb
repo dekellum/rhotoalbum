@@ -362,7 +362,11 @@ module RhotoAlbum
     end
 
     def self.image_timestamp image
-      EXIFR::JPEG.new(image).date_time
+      if(EXIFR::JPEG.new(image).date_time.nil?)
+        File.new(image).mtime.strftime '%A %d %B %Y %H:%M'
+	else
+	EXIFR::JPEG.new(image).date_time
+	end
       # File.new(image).mtime.strftime '%A %d %B %Y %H:%M'
     end
   end
